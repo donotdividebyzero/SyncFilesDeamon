@@ -1,6 +1,5 @@
 #define DIRECTORY_SEPARATOR "/"
 
-#include <iostream>
 #include "SyncDaemon.h"
 #include "FileStatus.h"
 
@@ -21,13 +20,16 @@ void SyncDaemon::sync(const string source, const string destination) {
     struct dirent* file;
     while( (file = readdir(dir_from.get())) not_eq nullptr ) {
         if ( file->d_name[0] == '.') continue; // not copying hidden files or hidden directories
-        files.insert({ destination + DIRECTORY_SEPARATOR + file->d_name, true });
-        FileStatus fileStatus{ source + DIRECTORY_SEPARATOR + file->d_name };
+        const string &destination_file_name = destination + DIRECTORY_SEPARATOR + file->d_name;
+        const string &source_file_name = source + DIRECTORY_SEPARATOR + file->d_name;
+
+        files.insert({destination_file_name, true });
+        FileStatus fileStatus{source_file_name};
         if (fileStatus.is_directory()) {
                 SyncDaemon sd;
-                sd.sync(source + DIRECTORY_SEPARATOR + file->d_name, destination + DIRECTORY_SEPARATOR + file->d_name);
+                sd.sync(source_file_name, destination_file_name);
         }
-        fileStatus.updateFileTo(destination + DIRECTORY_SEPARATOR + file->d_name);
+        fileStatus.updateFileTo(destination_file_name);
     }
 
     removeNotExisting(files, destination);

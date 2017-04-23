@@ -14,6 +14,11 @@ int main(int argc, char *argv[]) {
     const char *from = argv[1];
     const char *to = argv[2];
 
+    if(to == nullptr || from == nullptr) {
+        cout << "SyncFilesDaemon: \n\t" << "Paths not provided!\n";
+        return 0;
+    }
+
     while(true) {
         auto t0 = Time::now();
         sd.sync(from, to);
