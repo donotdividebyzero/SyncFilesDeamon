@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
         auto t1 = Time::now();
         fsec fs = t1 - t0;
         ms d = chrono::duration_cast<ms>(fs);
-        cout << from << " " << to << ' : ' << "Elapsed time: " << d.count() << "ms\n";
+        cout << "SyncFilesDaemon: \n\t" << "from: " << from << ", to: " << to << "\n\t" << "Elapsed time: " << d.count() << "ms\n";
         this_thread::sleep_for(chrono::seconds(5));
     }
 
