@@ -1,4 +1,4 @@
-#include "SyncDaemon.h"
+#include "../include/SyncDaemon.h"
 #include <chrono>
 #include <iostream>
 #include <thread>

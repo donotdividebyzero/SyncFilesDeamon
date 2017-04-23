@@ -1,7 +1,7 @@
 #define DIRECTORY_SEPARATOR "/"
 
-#include "SyncDaemon.h"
-#include "FileStatus.h"
+#include "../include/SyncDaemon.h"
+#include "../include/FileStatus.h"
 
 using namespace std;
 
@@ -28,8 +28,10 @@ void SyncDaemon::sync(const string source, const string destination) {
         if (fileStatus.is_directory()) {
                 SyncDaemon sd;
                 sd.sync(source_file_name, destination_file_name);
+        } else {
+            fileStatus.updateFileTo(destination_file_name);
         }
-        fileStatus.updateFileTo(destination_file_name);
+
     }
 
     removeNotExisting(files, destination);

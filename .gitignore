@@ -1,7 +1,9 @@
 /.idea
+/bin
+/lib
+/build
 /cmake-build-debug
-/syncDaemon
 /CMakeLists.txt
-/SyncJobs.cpp
-/SyncJobs.h
-/TryIcon.h
+/include/SyncJobs.cpp
+/include/SyncJobs.h
+/include/TryIcon.h
