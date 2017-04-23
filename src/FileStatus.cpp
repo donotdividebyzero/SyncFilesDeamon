@@ -13,12 +13,15 @@ bool FileStatus::is_directory() {
 }
 
 void FileStatus::updateFileTo(const string to) {
-    ofstream to_file(to.c_str());
-    ifstream from_file(file_name);
-    string line_from;
+    ifstream to_file{to.c_str()}, from_file{file_name};
 
-    while (getline(from_file, line_from))
-    {
-        to_file << line_from << '\n';
+    if(from_file.tellg() != to_file.tellg()) {
+        string line_from;
+        ofstream to_file_(to.c_str());
+        while (getline(from_file, line_from))
+        {
+            to_file_ << line_from << '\n';
+        }
     }
+
 }
