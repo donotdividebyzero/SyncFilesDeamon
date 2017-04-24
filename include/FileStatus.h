@@ -15,6 +15,7 @@ public:
 private:
     const std::string file_name;
     struct stat stat_buf;
+    void copyFile(const std::string &destination, std::ifstream &from_file);
 };
 
 #endif //SYNCFILESDAEMON_FILESTATUS_H

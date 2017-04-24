@@ -26,8 +26,7 @@ void SyncDaemon::sync(const string source, const string destination) {
         files.insert({destination_file_name, true });
         FileStatus fileStatus{source_file_name};
         if (fileStatus.is_directory()) {
-                SyncDaemon sd;
-                sd.sync(source_file_name, destination_file_name);
+            sync(source_file_name, destination_file_name);
         } else {
             fileStatus.updateFileTo(destination_file_name);
         }

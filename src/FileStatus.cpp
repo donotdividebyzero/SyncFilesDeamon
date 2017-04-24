@@ -15,13 +15,23 @@ bool FileStatus::is_directory() {
 void FileStatus::updateFileTo(const string to) {
     ifstream to_file{to.c_str()}, from_file{file_name};
 
-    if(from_file.tellg() != to_file.tellg()) {
-        string line_from;
-        ofstream to_file_(to.c_str());
-        while (getline(from_file, line_from))
-        {
-            to_file_ << line_from << '\n';
-        }
+    if(to_file == NULL) {
+        copyFile(to, from_file);
+        return;
     }
 
+    if(from_file.tellg() != to_file.tellg()) {
+        copyFile(to, from_file);
+        return;
+    }
+
+}
+
+void FileStatus::copyFile(const string &destination, ifstream &from_file) {
+    string line_from;
+    ofstream destination_file(destination.c_str());
+    while (getline(from_file, line_from))
+    {
+        destination_file << line_from << '\n';
+    }
 }

@@ -5,7 +5,7 @@ TARGET := bin/Daemon
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -o4 -g
+CFLAGS := -o3 -g
 LIB := -pthread -std=c++11
 INC := -I include
 
